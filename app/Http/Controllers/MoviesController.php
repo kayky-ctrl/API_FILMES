@@ -27,15 +27,16 @@ class MoviesController extends Controller
     public function store(MoviesRequest $request)
     {
         $movie = Movies::create([
-            'title' => $request['title'],
-            'synopis' => $request['synopis'],
-            'duration' => $request['duration'],
-            'releaseDate' => $request['releaseDate'],
+            'title' => $request->validated(['title']),
+            'synopis' => $request->validated(['synopis']),
+            'duration' => $request->validated(['duration']),
+            'releaseDate' => $request->validated(['releaseDate']),
         ]);
 
         if ($movie) {
             return response()->json([
-                'message' => 'Filme criado com sucesso'
+                'message' => 'Filme criado com sucesso',
+                'movie' => $movie
             ], 201);
         } else {
             return response()->json([
@@ -47,19 +48,14 @@ class MoviesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Movies $id)
     {
         $movie = Movies::findOrFail($id);
 
-        if ($movie) {
-            return response()->json([
-                'message' => $movie
-            ],200);
-        } else {
-            return response()->json([
-                'message' => 'Filme não encontrado'   
-            ],404);
-        };
+        return response()->json([
+            'message' => 'FIlme encontrado com successo',
+            'movie' => $movie
+        ],200);
     }
 
     /**
@@ -68,15 +64,16 @@ class MoviesController extends Controller
     public function update(MoviesRequest $request, Movies $movie)
     {
         $update = $movie->update([
-            'title' => $request['title'],
-            'synopis' => $request['synopis'],
-            'duration' => $request['duration'],
-            'releaseDate' => $request['releaseDate'],
+            'title' => $request->validated(['title']),
+            'synopis' => $request->validated(['synopis']),
+            'duration' => $request->validated(['duration']),
+            'releaseDate' => $request->validated(['releaseDate']),
         ]);
 
         if ($update) {
             return response()->json([
-                'message' => 'Filme atualizado com sucesso'
+                'message' => 'Filme atualizado com sucesso',
+                'movie' => $movie
             ], 201);
         } else {
             return response()->json([
