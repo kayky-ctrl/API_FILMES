@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Genres;
 use Illuminate\Http\Request;
 
 class GenresController extends Controller
@@ -11,14 +10,6 @@ class GenresController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
     {
         //
     }
@@ -34,15 +25,7 @@ class GenresController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Genres $genres)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Genres $genres)
+    public function show(string $id)
     {
         //
     }
@@ -50,7 +33,7 @@ class GenresController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Genres $genres)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +41,7 @@ class GenresController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Genres $genres)
+    public function destroy(string $id)
     {
         //
     }
